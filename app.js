@@ -1,10 +1,12 @@
 var budgetController = ( function() {
-    var Expense = function(id, description, value){
+    var Expense = function(id, description, value)
+    {
         this.id = id;
         this.description = description;
         this.value = value;
     }
-    var Income = function(id, description, value){
+    var Income = function(id, description, value)
+    {
         this.id = id;
         this.description = description;
         this.value = value;
@@ -20,18 +22,22 @@ var budgetController = ( function() {
         }
     };
     return {
-        addItem: function(type, des, val){
+        addItem: function(type, des, val)
+        {
             var newItem, ID;
-            if(data.allItems[type].length > 0){
+            if(data.allItems[type].length > 0)
+            {
                 ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
             }
             else{
                 ID = 0;
             }
-            if(type==='exp'){
+            if(type==='exp')
+            {
                 newItem = new Expense(ID, des, val);
             }
-            else if(type==='inc'){
+            else if(type==='inc')
+            {
                 newItem = new Income(ID, des, val);
             }
             data.allItems[type].push(newItem);
@@ -43,7 +49,8 @@ var budgetController = ( function() {
     };
 })();
 
-var UIController = ( function () {
+var UIController = ( function () 
+{
     var DOMString = {
         inputType: '.add__type',
         inputDescription: '.add__description',
@@ -53,14 +60,16 @@ var UIController = ( function () {
         expenseContainer: '.expenses__list'
     }
     return{
-        getInput: function(){
+        getInput: function()
+        {
             return{
                 type: document.querySelector(DOMString.inputType).value,
                 description: document.querySelector(DOMString.inputDescription).value,
                 value: parseFloat(document.querySelector(DOMString.inputValue).value)
             };
         },
-        addListElement: function(obj, type){
+        addListElement: function(obj, type)
+        {
             var html,newHtml,element;
             if(type === 'inc'){
                 element = DOMString.incomeContainer;
@@ -76,7 +85,8 @@ var UIController = ( function () {
             
             document.querySelector(element).insertAdjacentHTML('beforeend',newHtml);
         },
-        clearFields: function(){
+        clearFields: function()
+        {
             var fields, fieldsArr;
             fields = document.querySelectorAll(DOMString.inputDescription + ', ' + DOMString.inputValue);
             fieldsArr = Array.prototype.slice.call(fields);
@@ -92,7 +102,8 @@ var UIController = ( function () {
 })();
 
 var controller = ( function(budgetCrtl, UICtrl) {
-        var setupEventListeners = function(){
+        var setupEventListeners = function()
+        {
             var DOM = UICtrl.getDomString();
             document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem); 
             document.addEventListener( 'keypress', function(event){
@@ -102,11 +113,13 @@ var controller = ( function(budgetCrtl, UICtrl) {
             })
         }
 
-        var updatedBudget = function(){
+        var updatedBudget = function()
+        {
             //Budget
         }
 
-        var ctrlAddItem = function() {
+        var ctrlAddItem = function() 
+        {
             var input, newItem;
 
             input = UICtrl.getInput();
