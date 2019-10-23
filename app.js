@@ -6,7 +6,7 @@ var budgetController = ( function() {
         this.value = value;
         this.percentage = -1;
     };
-    Expense.prototype.calcPercentage = function(totalExp)
+    Expense.prototype.calcPercentage = function(totalExp)  
     {
         if(totalExp){
             this.percentage = Math.round((this.value/totalExp) * 100);
